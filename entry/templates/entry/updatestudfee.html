@@ -1,0 +1,87 @@
+{%extends 'base_layout.html'%}
+{% block content %}
+    <h1>Enter The Student Fees of {{stud_pd.Sname}}[{{stud_pd.USN}}]</h1>
+    <table class="content-table" border="2">
+    <tr><td><h2>Total</h2></td><td><h2>{{fee_str.Total}}</h2></td></tr>
+    <tr><td><h2>Paid</h2></td><td><h2>{{stud_fee.Paid}}</h2></td></tr>
+    <tr><td><h2>Due</h2></td><td><h2>{{stud_fee.Due}}</h2></td></tr>
+    </table>
+    {% if stud_fee.Due == 0 %}
+        
+        <h1>Fee Paid</h1>
+    {%else%}
+    <form class="update-student-fees" action="{% url 'entry:update_stud_fee' usn=stud_pd.USN %}" method="post">
+    {% csrf_token %}
+        <table class="content-table" border="2">
+            <tr>
+                <td>Fee Particulars</td>
+                <td>Amount</td>
+                <td>Paid</td>
+            </tr>
+        {% if fee_str.Apti_1 != stud_fee.Apti_1_Paid %}
+            <tr><td><label class="header">Aptitude & Personality Devp.Prog </label></td> <td><label class="header"> {{fee_str.Apti_1}}</label></td>                          
+                <td><input type="checkbox" id="a-option" name="paid1" value="True"><td> </tr>
+        {% endif %}
+        {% if fee_str.Tech_2 != stud_fee.Tech_2_Paid %}
+            <tr><td><label class="header">Dept.Magazine & Technical Events</label></td> <td><label class="header"> {{fee_str.Tech_2}}</label> </td>                                                   
+                <td><input type="checkbox" id="b-option" name="paid2" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Book_3 != stud_fee.Book_3_Paid %}
+            <tr><td><label class="header">E-Commerce,E-Journals & E-Books</label></td> <td><label class="header"> {{fee_str.Book_3}}</label>   </td>                                                 
+                <td><input type="checkbox" id="c-option" name="paid3" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.IndP_4 != stud_fee.IndP_4_Paid %}
+            <tr><td><label class="header">Induction Programme </label></td> <td><label class="header">  {{fee_str.IndP_4}}</label>   </td>                                                 
+                <td><input type="checkbox" id="d-option" name="paid4" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.IndV_5 != stud_fee.IndV_5_Paid %}
+            <tr><td><label class="header">Ind.Visits & Job Fair Activities</label></td> <td><label class="header">  {{fee_str.IndV_5}}</label>  </td>                                                  
+                <td><input type="checkbox" id="e-option" name="paid5" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Inte_6 != stud_fee.Inte_6_Paid %}
+            <tr><td><label class="header">Internet Service Charges </label></td> <td><label class="header">  {{fee_str.Inte_6}}</label>  </td>                                                  
+                <td><input type="checkbox" id="f-option" name="paid6" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Libr_7 != stud_fee.Libr_7_Paid %}
+            <tr><td><label class="header">Library Card/other Fee </label></td> <td><label class="header">  {{fee_str.Libr_7}}</label>   </td>                                                 
+                <td><input type="checkbox" id="g-option" name="paid7" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Semi_8 != stud_fee.Semi_8_Paid %}
+            <tr><td><label class="header">Seminar and Workshop </label></td> <td><label class="header">  {{fee_str.Semi_8}}</label> </td>                                                   
+                <td><input type="checkbox" id="h-option" name="paid8" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Soft_9 != stud_fee.Soft_9_Paid %}
+            <tr><td><label class="header">Soft Skill & Placement Devp.Programme </label></td> <td><label class="header"> {{fee_str.Soft_9}}</label> </td>                                                   
+            <td><input type="checkbox" id="i-option" name="paid9" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Conf_10 != stud_fee.Conf_10_Paid %}
+            <tr><td><label class="header">Special Lectures & Conferances </label></td> <td><label class="header"> {{fee_str.Conf_10}}</label>     </td>                                               
+                <td><input type="checkbox" id="j-option" name="paid10" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Subj_11 != stud_fee.Subj_11_Paid %}
+            <tr><td><label class="header">Special Training for Add on Subjects </label></td> <td><label class="header"> {{fee_str.Subj_11}}</label></td>                                                    
+                <td><input type="checkbox" id="k-option" name="paid11" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Spor_12 != stud_fee.Spor_12_Paid %}
+            <tr><td><label class="header">Sports Activities </label></td> <td><label class="header">  {{fee_str.Spor_12}}</label> </td>                                                   
+                <td><input type="checkbox" id="l-option" name="paid12" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Tran_13 != stud_fee.Tran_13_Paid %}
+            <tr><td><label class="header">Transportation Chg </label></td> <td><label class="header">  {{fee_str.Tran_13}}</label> </td>                                                   
+                <td><input type="checkbox" id="m-option" name="paid13" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Tuti_14 != stud_fee.Tuti_14_Paid %}
+            <tr><td><label class="header">TUITION FEE </label></td> <td><label class="header">  {{fee_str.Tuti_14}}</label>  </td>                                                  
+                <td><input type="checkbox" id="n-option" name="paid14" value="True"> <td> </tr>
+        {% endif %}
+        {% if fee_str.Volu_15 != stud_fee.Volu_15_Paid %}
+            <tr><td><label class="header">Volume Licence </label></td> <td><label class="header">  {{fee_str.Volu_15}}</label>   </td>                                                 
+                <td><input type="checkbox" id="o-option" name="paid15" value="True"><td> </tr>
+        {% endif %}
+        </table>
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    {%endif%}
+{% endblock %}

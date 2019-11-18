@@ -1,0 +1,65 @@
+{%extends 'base_layout.html'%}
+
+{% block content %}
+    <h3>Search Fee Record :</h3>
+    <form class="search" action="{% url 'details:fee_record'%}" method="post">
+    {% csrf_token %}
+        <div class="search-box">
+            <input type="text" name="search" class="search-text" placeholder="Enter Date or User or Admission No">
+        </div>
+        <div class="search-button-align">
+            <button type="submit" class="search-button">Search</button>
+        </div>
+    </form><br/>
+<div class="search-student">
+{%if search%}
+    
+    {%if search%}
+    <div class='stud_pds'>
+        <table class="content-table" border="2">
+            <caption class="search-result">Search results for '{{text}}':</caption>
+            <tr>
+                <td>Student Admission No.</td>
+                <td>Fee Paid</td>
+                <td>Date & Time Paid</td>
+                <td>Authorized By</td>
+            </tr>
+    	{%for s in search%}
+            <tr>
+                <td>{{s.Stud_Fee_ID}}</td>
+                <td>{{s.Fee_Paid}}</td>
+                <td>{{s.Date_Paid}}</td>
+                <td>{{s.Added_by}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+    {%endif%}
+</div>
+{%else%}
+
+    {%if fee_rcd%}
+    <div class="fee-record">
+        <table class="content-table" border="2">
+            <caption class="fee-record-caption">Fee Record</caption>
+            <tr>
+                <td>Student Admission No.</td>
+                <td>Fee Paid</td>
+                <td>Date & Time Paid</td>
+                <td>Authorized By</td>
+            </tr>
+            {%for f in fee_rcd%}
+            <tr>
+                <td>{{f.Stud_Fee_ID}}</td>
+                <td>{{f.Fee_Paid}}</td>
+                <td>{{f.Date_Paid}}</td>
+                <td>{{f.Added_by}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+    {%else%}
+    <h3>No Data To Display</h3>
+    {%endif%}
+{%endif%}
+{% endblock %}

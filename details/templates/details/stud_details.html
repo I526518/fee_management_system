@@ -1,0 +1,26 @@
+{%extends 'base_layout.html'%}
+
+{% block content %}
+    <div class="student-details">
+        <table class="content-table" border="2">
+	        <tr><td><h1>NAME </h1></td> <td><h1>{{stud_pd.Sname}}</h1></td></tr>
+            <tr><td><h3>USN </h3></td> <td><h3>{{stud_pd.USN}}</h3></tr>
+            <tr><td><p>GENDER</p> </td> <td><p> {{stud_pd.Gender}}</p></tr>
+            <tr><td><p>DATE OF BIRTH</p> </td> <td><p>{{stud_pd.DOB}}</p></tr>
+            <tr><td><p>PLACE OF BIRTH  </p></td> <td><p>{{stud_pd.POB}}</p></tr>
+            <tr><td><p>PHONE NUMBER </p></td> <td> <p>{{stud_pd.S_Pno}}</p></tr>
+            <tr><td><p>ADDRESS </p></td> <td><p> {{stud_pd.S_Add}}</p></tr>
+            <tr><td><p>BATCH  </p></td> <td><p>{{stud_pd.Batch}}</p></tr>
+            <tr><td><h3>ADMISSION NUMBER</h3>  </td> <td><h3>{{stud_ad.Adm_No}}</h3></tr>
+            <tr><td><p>Course  </p></td> <td><p>{{stud_ad.Course}}</p></tr>
+            <tr><td><p>SEM </p></td> <td><p>{{stud_ad.Sem}}</p></tr>
+            <tr><td><p>BRANCH </p></td> <td><p>{{stud_ad.Branch}}</p></tr>
+            <tr><td><p>ADMISSION TYPE </p></td> <td><p> {{stud_ad.Adm_Type}}</p></tr>
+            <tr><td><p>QUOTA </p></td> <td><p>{{stud_ad.Quota}}</p></tr>
+        </table>         
+    </div>
+    <div class="fee-update-button">
+        <button><h5 ><a style="color:black" href="{% url 'entry:update_stud_fee' usn=stud_pd.USN %}">Update Student Fee</a></h5></button>
+    
+    </div>
+{% endblock %}

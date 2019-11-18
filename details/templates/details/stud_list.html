@@ -1,0 +1,61 @@
+{%extends 'base_layout.html'%}
+
+{% block content %}
+    <h3>Search Student :</h3>
+    <form class="search" action="{% url 'details:list'%}" method="post">
+    {% csrf_token %}
+        <div class="search-box">
+            <input type="text" name="search" class="search-text" placeholder="Enter Student's Name or USN">
+        </div>
+        <div class="search-button-align">
+            <button type="submit" class="search-button">Search</button>
+        </div>
+    </form><br/>
+
+<div class="search-student">
+{%if search%}
+    
+    {%if search%}
+    <div class='stud_pds'>
+        <table class="content-table" border="2">
+            <caption class="search-result">Search results for '{{text}}':</caption>
+            <tr>
+                <td>Name</td>
+                <td>USN</td>
+            </tr>
+    	{%for s in search%}
+            <tr>
+                <td><a href="{% url 'details:details' usn=s.USN %}">{{s.Sname}}</a></td>
+                <td><a href="{% url 'details:details' usn=s.USN %}">{{s.USN}}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+    {%endif%}
+</div>
+{%else%}
+
+
+	{%if stud_pds %}
+    <div class='stud_pds'>
+    <table class="content-table" border="2">
+        <caption class="stud-pd">Students List:</caption>
+        <tr>
+                <td>Name</td>
+                <td>USN</td>
+        </tr>
+    	{%for s in stud_pds%}
+		<div class='stud'>
+            <tr>
+                <td><a href="{% url 'details:details' usn=s.USN %}">{{s.Sname}}</a></td>
+                <td><a href="{% url 'details:details' usn=s.USN %}">{{s.USN}}</a></td>
+            </tr>
+        </div>
+        {% endfor %}
+    <table>      
+    </div>
+    {% else %}
+        <h3>No data to display</h3>
+    {% endif %}
+{%endif%}
+{% endblock %}

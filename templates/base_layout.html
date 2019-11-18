@@ -1,0 +1,36 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FEE MANAGEMENT</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+	<div class="wrapper">
+        <h1><a href="{% url 'index' %}">Home</a></h1>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li>
+                        <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                    <li>
+                        <h2><a href="{% url 'entry:create_stud_pd' %}">Add Student Data</a></h2>
+                    </li>
+                {% else %}
+                    <li>
+                        <h2><a href="{% url 'accounts:login' %}">LOG-IN</a></h2>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{%extends 'base_layout.html'%}
+{% block content %}
+<div class="create-stud-pd" >
+
+<h1>Add Student Personal Details</h1>
+    <form class="stud_pd_entry" action="{% url 'entry:create_stud_pd' %}" method="post">
+    {% csrf_token %}
+        {{form1}}
+        {{form2}}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}
